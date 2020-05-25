@@ -8,7 +8,7 @@ int main()
     icalrecur_iterator *ritr;
     
     //const char *dtstart_string = "19980101T090000";
-    const char *rrule_string = "FREQ=YEARLY;UNTIL=20300131T140000Z;BYMONTH=1;BYDAY=SU,MO,TU,WE,TH,FR,SA";
+    const char *rrule_string = "FREQ=YEARLY;UNTIL=20210131T140000Z;BYMONTH=1;BYDAY=SU,MO,TU,WE,TH,FR,SA";
 
     //dtstart = icaltime_from_string(dtstart_string);
     dtstart = icaltime_current_time_with_zone(NULL);
@@ -21,7 +21,8 @@ int main()
     for (next = icalrecur_iterator_next(ritr);
         !icaltime_is_null_time(next);
         next = icalrecur_iterator_next(ritr)) {
-
+        printf("%ld\n", icaltime_as_timet(next));
+        printf("%ld\n", icaltime_as_timet_with_zone(next, NULL));
         printf("%s\n", icaltime_as_ical_string(next));
     }
     printf("\n");
